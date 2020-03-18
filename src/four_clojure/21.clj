@@ -1,46 +1,24 @@
-(ns four-clojure.21)
+(ns four-clojure.21
+  (:require [clojure.test :as t]))
 
-;; 21
-;; Write a function which returns the total number of elements in a sequence.
-(= (count '(1 2 3 3 1)) 5)
-(defn my-count
-  "Returns the total number of elements in a sequence."
-  [seq]
-  ((fn inner-count [seq acc]
-     (if (empty? (rest seq))
-       (inc acc)
-       (inner-count
-         (rest seq)
-         (inc acc)))) seq 0))
+;; Nth Element
+;; Difficulty:	Easy
+;; Topics:	    seqs core-functions
+;;
+;; Write a function which returns the Nth element from a sequence.
 
-(= (my-count '(1 2 3 3 1)) 5)
+(defn find-nth [s n]
+  (first (drop n s)))
 
-; My solution with inner function with accumulator
-(= ((fn [seq]
-      ((fn inner-count [seq acc]
-         (if (empty? (rest seq))
-           (inc acc)
-           (inner-count
-             (rest seq)
-             (inc acc)))) seq 0))
-    '(1 2 3 3 1)) 5)
+(t/testing "find nth element in the sequence"
+  (t/is (= (find-nth '(4 5 6 7) 2) 6))
+  (t/is (= (find-nth [:a :b :c] 0) :a))
+  (t/is (= (find-nth [1 2 3 4] 1) 2))
+  (t/is (= (find-nth '([1 2] [3 4] [5 6]) 2) [5 6])))
 
-; With reduce
-(= (reduce (fn [n _] (inc n)) 0 '(1 2 3 3 1))
-   5)
-
-; With apply and map
-(= (#(apply + (map (fn [_] 1) %))
-     '(1 2 3 3 1))
-   5)
-
-(apply + '(1 1 1 1 1))
-
-(map (constantly 1) '(1 2 10 20))
-
-; My solution after reviewing other's
-(= (#(apply + (map (constantly 1) %))
-     '(1 2 3 3 1))
-   5)
-
-
+(comment
+  ; First attempt
+  (defn find-nth [seq n]
+    (if (zero? n)
+      (first seq)
+      (find-nth (rest seq) (dec n)))))
