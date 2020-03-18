@@ -12,7 +12,7 @@
 
 ; Group words by sorted sequence of their letters (key is the sorted sequence of letters, value is the vector of
 ; words composed from those letters).
-; Than take those vectors of words and make sets from them.
+; Then take those vectors of words and make sets from them.
 ; Remove sets with no anagram (consists of only one word).
 ; Make a final set of sets.
 (defn anagram-finder [words]
