@@ -1,5 +1,4 @@
-(ns four-clojure.162
-  (:require [clojure.test :as t]))
+(ns four-clojure.162)
 
 ;; Logical falsity and truth
 ;; Difficulty:	Elementary

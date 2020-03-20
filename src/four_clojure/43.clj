@@ -23,9 +23,9 @@
 
 (comment
   ; first try
-  (defn append-each-nth [ns n start]
-    "Appends 0, then (0 + n), then (0 + n + n), then (0 + n + n + ...)
-    to the acc until n is <= (count ns)."
+  (defn append-each-nth
+    "Appends 0, then (0 + n), then (0 + n + n), then (0 + n + n + ...) to the acc until n is <= (count ns)."
+    [ns n start]
     (loop [acc '()
            idx start]
       (if (>= idx (count ns))
